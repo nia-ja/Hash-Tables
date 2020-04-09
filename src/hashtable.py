@@ -54,9 +54,19 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        myValue = self._hash_mod(key)
+        node = self.storage[myValue]
 
-
+        #if no node is found create a new node
+        #or if key is the same, overwrite current node with new node
+        if node is None or node.key == key:
+            self.storage[myValue] = LinkedPair(key, value)
+        else:
+            while True:
+                if node.next is None or node.key == key:
+                    node.next = LinkedPair(key, value)
+                    break
+                node = node.next
 
     def remove(self, key):
         '''
@@ -66,7 +76,6 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
 
 
     def retrieve(self, key):
@@ -77,8 +86,6 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
-
 
     def resize(self):
         '''
@@ -87,8 +94,6 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
-
 
 
 if __name__ == "__main__":
