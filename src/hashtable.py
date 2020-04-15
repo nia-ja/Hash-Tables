@@ -89,9 +89,13 @@ class HashTable:
         index = self._hash_mod(key)
         node = self.storage[index]
         prev = None
+        # till we'll hit en empty next node
         while node.next is not None and node.key != key:
+            # move curr node to the left
             prev = node
+            # move next node to the left
             node = node.next
+        # deleted node was the only one in the linked list
         if prev is None:
             self.storage[index] = node.next
         else:
